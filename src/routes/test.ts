@@ -1,8 +1,10 @@
-import {Router, Request, Response} from "express";
+import { Router, Request, Response } from "express";
 import { Test } from "../models/test.model";
 
 
 const testRoutes = Router();
+
+//Nota: usar Type casting para las rutas Sección 33 video 510 del curso de NOdejs
 
 
 testRoutes.post('/datos', (req: Request, res: Response) => {
@@ -13,7 +15,7 @@ testRoutes.post('/datos', (req: Request, res: Response) => {
         activo: req.body.activo
     }
 
-    Test.create(test).then( testDb => {
+    Test.create(test).then(testDb => {
 
         res.json({
             ok: true,
@@ -23,7 +25,7 @@ testRoutes.post('/datos', (req: Request, res: Response) => {
     }).catch(err => {
 
         res.json({
-            ok:false,
+            ok: false,
             error: err
         });
     });
@@ -35,12 +37,21 @@ testRoutes.get('/datos', (req: Request, res: Response) => {
 
         res.json({
             ok: true,
-            mensaje:'datos traídos con éxito',
+            mensaje: 'datos traídos con éxito',
             datos: datos
         });
     });
 
 });
+
+testRoutes.get('/holaNodemon', (req: Request, res: Response) => {
+
+    res.json({
+        ok: true,
+        message: 'Hola con nodemon'
+    });
+
+})
 
 testRoutes.put('/datos', (req: Request, res: Response) => {
 
@@ -51,19 +62,19 @@ testRoutes.put('/datos', (req: Request, res: Response) => {
         activo: req.body.activo
     }
 
-    Test.findByIdAndUpdate({_id: test.id}, {
+    Test.findByIdAndUpdate({ _id: test.id }, {
         nombre: test.nombre,
         cantidad: test.cantidad,
         activo: test.activo
-    }).then( answ => {
+    }).then(answ => {
         res.json({
             ok: true,
-            mensaje:'datos actualizados con éxito'
+            mensaje: 'datos actualizados con éxito'
         });
     }).catch(err => {
 
         res.json({
-            ok:false,
+            ok: false,
             error: err
         });
     });
@@ -79,16 +90,17 @@ testRoutes.delete('/datos/:id', (req: Request, res: Response) => {
 
         res.json({
             ok: true,
-            mensaje:'datos borrados con éxito'
+            mensaje: 'datos borrados con éxito'
         });
     }).catch(err => {
         res.json({
-            ok:false,
+            ok: false,
             error: err
         });
     });
 
 });
+
 
 
 export default testRoutes;

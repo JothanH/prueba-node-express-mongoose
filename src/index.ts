@@ -10,7 +10,7 @@ const server = new Server();
 colors.enable();
 
 //Body parser
-server.app.use(express.urlencoded({ extended : true }));
+server.app.use(express.urlencoded({ extended: true }));
 server.app.use(express.json());
 
 //Rutas de la app
@@ -27,7 +27,7 @@ let options: mongoose.ConnectOptions = {
 
 mongoose.connect(URI, options, (err) => {
 
-    if(err) {
+    if (err) {
         console.log("\n");
         console.log("****************************".bgRed);
         console.log("Mongo no se pudo conectar".red);
@@ -48,6 +48,6 @@ mongoose.connect(URI, options, (err) => {
 //Levantar express
 server.start(() => {
     console.log("\n");
-    console.log(`Servidor corriendo el puerto ${ server.port}`.italic.grey);
+    console.log(`Servidor corriendo el puerto ${server.port}`.italic.grey);
 
 });
